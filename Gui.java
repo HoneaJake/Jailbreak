@@ -1,6 +1,6 @@
 package jailbreak;
 
-import jailbreak.piece.AbstractGamePiece;
+import jailbreak.piece.GamePiece;
 import jailbreak.piece.MovablePiece;
 import jailbreak.piece.pieces.KingpinPiece;
 
@@ -45,12 +45,12 @@ public class Gui extends JFrame {
 
                 }
 
-                for (AbstractGamePiece piece : JailBreak.GAME_BOARD.pieces)
+                for (GamePiece piece : JailBreak.GAME_BOARD.pieces)
                     if (piece.isClicked(e.getX(), e.getY() - 15)) {
 
-                        if (JailBreak.GAME_BOARD.outlawTurn && piece.getType() == AbstractGamePiece.Type.POSSE)
+                        if (JailBreak.GAME_BOARD.outlawTurn && piece.getType() == GamePiece.Type.POSSE)
                             continue;
-                        else if (!JailBreak.GAME_BOARD.outlawTurn && piece.getType() == AbstractGamePiece.Type.OUTLAW)
+                        else if (!JailBreak.GAME_BOARD.outlawTurn && piece.getType() == GamePiece.Type.OUTLAW)
                             continue;
 
                         selected = new Point(piece.x, piece.y);
@@ -158,7 +158,7 @@ public class Gui extends JFrame {
 
                 checkGameLogic();
 
-                for (AbstractGamePiece piece : JailBreak.GAME_BOARD.pieces)
+                for (GamePiece piece : JailBreak.GAME_BOARD.pieces)
                     ((MovablePiece) piece).drawPiece(g, selected);
 
                 if (JailBreak.GAME_BOARD.gameOver) {
@@ -182,7 +182,7 @@ public class Gui extends JFrame {
 
                     try {
 
-                        AbstractGamePiece piece = JailBreak.GAME_BOARD.getPieceAt(selected.x, selected.y);
+                        GamePiece piece = JailBreak.GAME_BOARD.getPieceAt(selected.x, selected.y);
 
                         g.setColor(piece.getType().getColor());
                         int ovalScale = (int) (SCALE * 0.8);
@@ -224,7 +224,7 @@ public class Gui extends JFrame {
 
     public void checkGameLogic() {
 
-        Iterator<AbstractGamePiece> pieces = JailBreak.GAME_BOARD.pieces.iterator();
+        Iterator<GamePiece> pieces = JailBreak.GAME_BOARD.pieces.iterator();
 
         while (pieces.hasNext()) {
 
@@ -236,7 +236,7 @@ public class Gui extends JFrame {
 
                 if (piece instanceof KingpinPiece) {
 
-                    JailBreak.GAME_BOARD.winner = AbstractGamePiece.Type.POSSE;
+                    JailBreak.GAME_BOARD.winner = GamePiece.Type.POSSE;
                     JailBreak.GAME_BOARD.gameOver = true;
 
                 }
@@ -247,7 +247,7 @@ public class Gui extends JFrame {
 
                 if (((KingpinPiece) piece).hasEscaped()) {
 
-                    JailBreak.GAME_BOARD.winner = AbstractGamePiece.Type.OUTLAW;
+                    JailBreak.GAME_BOARD.winner = GamePiece.Type.OUTLAW;
                     JailBreak.GAME_BOARD.gameOver = true;
 
                 }
@@ -258,14 +258,14 @@ public class Gui extends JFrame {
 
         if (!JailBreak.GAME_BOARD.gameOver) {
 
-            if (JailBreak.GAME_BOARD.getLeft(AbstractGamePiece.Type.POSSE) == 0) {
+            if (JailBreak.GAME_BOARD.getLeft(GamePiece.Type.POSSE) == 0) {
 
-                JailBreak.GAME_BOARD.winner = AbstractGamePiece.Type.OUTLAW;
+                JailBreak.GAME_BOARD.winner = GamePiece.Type.OUTLAW;
                 JailBreak.GAME_BOARD.gameOver = true;
 
-            } else if (JailBreak.GAME_BOARD.getLeft(AbstractGamePiece.Type.OUTLAW) == 0) {
+            } else if (JailBreak.GAME_BOARD.getLeft(GamePiece.Type.OUTLAW) == 0) {
 
-                JailBreak.GAME_BOARD.winner = AbstractGamePiece.Type.POSSE;
+                JailBreak.GAME_BOARD.winner = GamePiece.Type.POSSE;
                 JailBreak.GAME_BOARD.gameOver = true;
 
             }

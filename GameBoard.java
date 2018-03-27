@@ -1,6 +1,6 @@
 package jailbreak;
 
-import jailbreak.piece.AbstractGamePiece;
+import jailbreak.piece.GamePiece;
 import jailbreak.piece.pieces.KingpinPiece;
 import jailbreak.piece.pieces.OutlawPiece;
 import jailbreak.piece.pieces.PossePiece;
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class GameBoard {
 
-    public ArrayList<AbstractGamePiece> pieces = new ArrayList<>();
+    public ArrayList<GamePiece> pieces = new ArrayList<>();
 
     public boolean outlawTurn = false, gameOver = false;
-    public AbstractGamePiece.Type winner;
+    public GamePiece.Type winner;
 
     public GameBoard() {
 
@@ -56,9 +56,9 @@ public class GameBoard {
 
     }
 
-    public AbstractGamePiece getPieceAt(int x, int y) {
+    public GamePiece getPieceAt(int x, int y) {
 
-        for (AbstractGamePiece piece : pieces)
+        for (GamePiece piece : pieces)
             if (piece.x == x && piece.y == y)
                 return piece;
 
@@ -66,11 +66,11 @@ public class GameBoard {
 
     }
 
-    public int getLeft(AbstractGamePiece.Type team){
+    public int getLeft(GamePiece.Type team){
 
         int left = 0;
 
-        for(AbstractGamePiece piece : pieces)
+        for(GamePiece piece : pieces)
             if(piece.getType() == team)
                 left ++;
 

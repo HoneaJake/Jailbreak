@@ -1,11 +1,11 @@
 package jailbreak.piece.pieces;
 
-import jailbreak.piece.AbstractGamePiece;
+import jailbreak.piece.GamePiece;
 import jailbreak.piece.MovablePiece;
 
-@AbstractGamePiece.Info(
+@GamePiece.Info(
         abbreviation = "O",
-        type = AbstractGamePiece.Type.OUTLAW
+        type = GamePiece.Type.OUTLAW
 )
 public class OutlawPiece extends MovablePiece {
 }

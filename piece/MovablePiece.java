@@ -6,7 +6,7 @@ import jailbreak.JailBreak;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class MovablePiece extends AbstractGamePiece {
+public class MovablePiece extends GamePiece {
 
     public static final ArrayList<Point> FORBIDDEN = new ArrayList<>();
 
@@ -43,20 +43,20 @@ public class MovablePiece extends AbstractGamePiece {
 
     public boolean isCaptured() {
 
-        AbstractGamePiece[] horizontalPieces = {JailBreak.GAME_BOARD.getPieceAt(x - 1, y), JailBreak.GAME_BOARD.getPieceAt(x + 1, y)};
+        GamePiece[] horizontalPieces = {JailBreak.GAME_BOARD.getPieceAt(x - 1, y), JailBreak.GAME_BOARD.getPieceAt(x + 1, y)};
 
         boolean horizontalCapture, verticalCapture;
         horizontalCapture = verticalCapture = true;
 
-        for (AbstractGamePiece piece : horizontalPieces)
+        for (GamePiece piece : horizontalPieces)
             if (piece != null && piece.getType() == getType())
                 horizontalCapture = false;
             else if (piece == null)
                 horizontalCapture = false;
 
-        AbstractGamePiece[] verticalPieces = {JailBreak.GAME_BOARD.getPieceAt(x, y - 1), JailBreak.GAME_BOARD.getPieceAt(x, y + 1)};
+        GamePiece[] verticalPieces = {JailBreak.GAME_BOARD.getPieceAt(x, y - 1), JailBreak.GAME_BOARD.getPieceAt(x, y + 1)};
 
-        for (AbstractGamePiece piece : verticalPieces)
+        for (GamePiece piece : verticalPieces)
             if (piece != null && piece.getType() == getType())
                 verticalCapture = false;
             else if (piece == null)
